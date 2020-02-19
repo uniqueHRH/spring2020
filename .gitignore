@@ -1,0 +1,9 @@
+.metadata/
+Servers/
+*.classpath
+*.class
+.settings
+sts06/target
+*.springBeans
+*.project
+sts06/src/test/resources/log4j.xml
