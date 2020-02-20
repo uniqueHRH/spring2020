@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 
 
@@ -22,18 +24,42 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
+	<!-- ibatis -->
+	<!-- <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/sqlMapConfig.xml"/>
+	</bean>
 
-	<bean id="deptDao" class="com.bit.project02.dept.model.DeptDaoImpl1">
+	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean> -->
+
+	<!-- mybatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>   <!-- SqlSessionTemplate 는 디폴트 생성자가 필요하기 때문에 만들어 줬다-->
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="deptDao" class="com.bit.project02.dept.model.DeptDaoImpl3">
 		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/>   // @Autowired 해서 property 하지 않아도 된다 -->
 	</bean>
 
 <!-- 
-	<mvc:annotation-driven/> 
+	<context:annotation-config/> 
 	내부에 아래의 bean 을 요청
 	dao 의 AutoWired 를 인식할 수 있도록 한다
 -->
 	
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
-	
+	<!-- @Autowired 의 의존주입처리를 한다 -->
 	
 </beans>

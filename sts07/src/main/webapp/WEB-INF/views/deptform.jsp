@@ -17,6 +17,16 @@
 	<script type="text/javascript" src="${root }resources/js/bootstrap.js"></script>
 </head>
 <body>
+
+<c:if test="${bean ne null }">
+	<c:if test="${bean.deptno==0}">
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <strong>Error!</strong> dname을 입력하세요
+	</div>
+	</c:if>
+</c:if>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,27 +75,35 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>DEPTNO</th>
-						<th>DNAME</th>
-						<th>LOC</th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${list }" var="bean">
-				<c:url value="detail" var="alink">
-					<c:param name="idx" value="${bean.deptno }"/>
-				</c:url>
-					<tr>
-						<td><a href="${alink }">${bean.deptno }</a></td>
-						<td><a href="${alink }">${bean.dname }</a></td>
-						<td><a href="${alink }">${bean.loc }</a></td>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
+			<h1>${title }페이지</h1>
+			<form class="form-horizontal" action="${action }" method="${method }">
+			<c:if test="${title ne '입 력' }">
+			  <div class="form-group">
+			    <label for="deptno" class="col-sm-2 control-label">deptno</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="deptno" name="deptno" placeholder="deptno" value="${bean.deptno }" readonly/>
+			    </div>
+			   </div>
+			 </c:if>
+			  <div class="form-group">
+			    <label for="dname" class="col-sm-2 control-label">dname</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="dname" name="dname" placeholder="dname" value="${bean.dname }" ${disabled }/>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="loc" class="col-sm-2 control-label">loc</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="loc" name="loc" placeholder="loc" value="${bean.loc }" ${disabled }/>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" class="btn btn-primary">${btn1 }</button>
+			    </div>
+			  </div>
+			</form>
+
 		</div>
 	</div>
 </div>

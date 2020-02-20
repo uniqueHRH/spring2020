@@ -1,17 +1,18 @@
 use class03;
+drop table emp01;
 drop table dept01;
-
 CREATE TABLE dept01 (
   deptno int(11) NOT NULL AUTO_INCREMENT,
-  dname varchar(45) DEFAULT NULL,
+  dname varchar(45) NOT NULL,
   loc varchar(45) DEFAULT NULL,
   PRIMARY KEY (deptno)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-INSERT INTO dept01 (deptno,dname,loc) VALUES (1,'손해사정','대구');
-INSERT INTO dept01 (deptno,dname,loc) VALUES (2,'인사팀','서울');
-INSERT INTO dept01 (deptno,dname,loc) VALUES (3,'영업팀','광주');
-INSERT INTO dept01 (deptno,dname,loc) VALUES (4,'총무팀�','대전');
-INSERT INTO dept01 (deptno,dname,loc) VALUES (5,'마케팅팀','광주');
-INSERT INTO dept01 (deptno,dname,loc) VALUES (6,'디자인팀','강원');
-INSERT INTO dept01 (deptno,dname,loc) VALUES (17,'경영팀�','부산');
+-- 시퀀스 값 수정
+--alter table dept01 auto_increment=1;
+
+-- dummy
+INSERT INTO dept01 (dname,loc) VALUES ('영업부','서울');
+INSERT INTO dept01 (dname,loc) VALUES ('총무부','부산');
+INSERT INTO dept01 (dname,loc) VALUES ('회계부','대구');
+commit;
