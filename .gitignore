@@ -7,3 +7,12 @@ sts06/target
 *.springBeans
 *.project
 sts06/src/test/resources/log4j.xml
+src/test
+target
+*.js
+*.woff
+*.css
+*.map
+sts07/src/main/webapp/resources/fonts
+sts07/src/main/webapp/resources/imgs/big4.jpg
+sts07/src/test/resources/log4j.xml

@@ -14,22 +14,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EmpController {
 	Emp01Dao emp01Dao;
 	
-	@Autowired
-	public void setEmp01Dao(Emp01Dao emp01Dao) {
-		this.emp01Dao = emp01Dao;
-	}
 /*
 	Autowired
 	동일 타입이 두 개 이상일 때, 주입되지 않는다
 	강제성이 없다, dao 가 있어야한다
+	생성자나 setter 등을 사용하여 의존성을 주입하려 할 때, 해당 bean 을 찾아서 주입
+	bean, property 를 만들어 줄 필요 없다
 */
+	@Autowired
+	public void setEmp01Dao(Emp01Dao emp01Dao) {
+		this.emp01Dao = emp01Dao;
+	}
 	@RequestMapping("list")
 	public void list(Model model) {
-		model.addAttribute("list", emp01Dao.selectAll());
+		model.addAttribute("list", emp01Dao.selectAll());   // view 에 값을 넘겨준다
 	}
 	
 	
-	@RequestMapping(value="add",method=RequestMethod.GET)
+	@RequestMapping(value="add",method=RequestMethod.GET)   // url 을 통해 값을 넘긴다 . get일 때, add 페이지로 넘긴다
 	public void add() {
 		
 	}
@@ -43,18 +45,18 @@ public class EmpController {
 	
 	
 	@RequestMapping("detail")
-	public void detail(int sabun, Model model) {
+	public void detail(int sabun, Model model) {   // view 로 값을 넘겨줄 때, 사용하는 객체
 		model.addAttribute("bean", emp01Dao.selectOne(sabun));
 	}
 	
 	
-	@RequestMapping(value="edit", method=RequestMethod.GET)
+	@RequestMapping(value="edit", method=RequestMethod.GET)   // 값을 화면으로 출력하여 넘기는 메소드 (detail 에서 edit 으로 넘어갈 때, GET 메소드 사용)
 	public void edit(@RequestParam("idx") int sabun, Model model) {
 		model.addAttribute("bean", emp01Dao.selectOne(sabun));
 	}
 	
 	
-	@RequestMapping(value="edit", method=RequestMethod.POST)
+	@RequestMapping(value="edit", method=RequestMethod.POST)   // 값을 수정하여 update 하는 메소드
 	public String edit(int sabun, String name, int pay) {
 		emp01Dao.updateOne(sabun,name,pay);
 		return "redirect:detail?sabun="+sabun;
@@ -63,7 +65,7 @@ public class EmpController {
 	
 	@RequestMapping("delete")
 	public String delete(@RequestParam("idx") int sabun) {
-		int result=emp01Dao.deleteOne(sabun);
+		int result=emp01Dao.deleteOne(sabun);   // int result 꼭 쓸 필요 없다
 		return "redirect:list";
 	}
 }

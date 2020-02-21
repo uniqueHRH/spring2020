@@ -18,7 +18,7 @@
 			<th>연봉</th>
 		</tr>
 		<c:forEach items="${list }" var="bean">
-		<c:url value="detail" var="one">
+		<c:url value="detail" var="one">   <!-- detail 페이지로 이동, 이름은 one -->
 			<c:param name="sabun" value="${bean.sabun }"/>
 		</c:url>
 			<tr>

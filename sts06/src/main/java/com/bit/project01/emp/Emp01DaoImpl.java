@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 public class Emp01DaoImpl extends JdbcDaoSupport implements Emp01Dao {
-	
+
 	private RowMapper<Emp01Vo> rowMapper=new RowMapper<Emp01Vo>() {
 
 		@Override
@@ -43,7 +43,9 @@ public class Emp01DaoImpl extends JdbcDaoSupport implements Emp01Dao {
 		String sql="select * from emp01 where sabun=?";
 		return getJdbcTemplate().queryForObject(sql, rowMapper, key);
 	}
-
+//	queryForObject : 1개의 레코드를 가져와 자바 객체에 저장
+//	queryForList : 2개 이상의 레코드를 가져와 자바 객체 List 에 저장
+	
 
 	@Override
 	public void updateOne(int sabun, String name, int pay) {
