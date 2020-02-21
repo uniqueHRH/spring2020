@@ -36,7 +36,7 @@
 	</bean> -->
 
 	<!-- mybatis -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">   <!-- 데이터베이스와의 연결, SQL의 실행에 대한 모든 것을 처리하는 객체 -->
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
 	</bean>

@@ -13,4 +13,6 @@ public interface DeptDao {
 	DeptVo selectOne(int key);
 
 	int updateOne(String dname, String loc, int deptno);
+	
+	void deleteOne(int key);
 }

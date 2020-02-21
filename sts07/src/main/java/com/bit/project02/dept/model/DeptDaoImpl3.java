@@ -31,7 +31,12 @@ public class DeptDaoImpl3 implements DeptDao {
 
 	@Override
 	public int updateOne(String dname, String loc, int deptno) {
-		return 0;
+		return sqlSession.update("dept.updateOne", new DeptVo(0, dname, loc));
+	}
+
+	@Override
+	public void deleteOne(int key) {
+		sqlSession.delete("dept.deleteOne", key);
 	}
 
 }

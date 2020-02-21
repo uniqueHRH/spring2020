@@ -33,6 +33,12 @@ public class DeptDaoImpl2 implements DeptDao {
 		return 0;
 	}
 
+	@Override
+	public void deleteOne(int key) {
+		// TODO Auto-generated method stub
+		
+	}
+
 /*
 	 ibatis 사용 부분
 		@Autowired

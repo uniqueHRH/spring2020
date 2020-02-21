@@ -59,6 +59,13 @@ public class DeptDaoImpl1 implements DeptDao {
 			return jdbcTemplate.update(sql, dname, loc, deptno);
 		}
 
+
+		@Override
+		public void deleteOne(int key) {
+			// TODO Auto-generated method stub
+			
+		}
+
 }
 
 

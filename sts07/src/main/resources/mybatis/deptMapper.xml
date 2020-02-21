@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="dept">
+<mapper namespace="dept">   <!-- mapper 이름 지어주기 -->
 	<select id="selectAll" resultType="bean">
 		select * from dept01 order by deptno desc
 	</select>
@@ -13,4 +13,16 @@
 	<insert id="insertOne" parameterType="bean">
 		insert into dept01 (dname, loc) values (#{dname}, #{loc})
 	</insert>
+	<update id="updateOne" parameterType="int">
+		update dept01 set dname=#{dname}, loc=#{loc} where deptno=#{deptno}
+	</update>
+	<delete id="deleteOne" parameterType="int">
+		delete from dept01 where deptno=#{deptno}
+	</delete>
 </mapper>
+
+<!-- 
+	parameterType
+	 - java.lang 패키지의 integer 등의 자료형은 패키지없이 사용가능하다
+	 - 이외 패키지의 자료를 사용할 경우, 패키지명을 다 적어준다
+ -->
