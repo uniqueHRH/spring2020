@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bit.project02.dept.model.entity.DeptVo;
 
 public class DeptDaoImpl3 implements DeptDao {
-
 	
 	@Autowired
 	SqlSession sqlSession;
-	
-	
+
 	@Override
 	public List<DeptVo> selectAll() {
 		return sqlSession.selectList("dept.selectAll");
@@ -21,22 +19,17 @@ public class DeptDaoImpl3 implements DeptDao {
 
 	@Override
 	public void insertOne(String dname, String loc) {
-		sqlSession.insert("dept.insertOne", new DeptVo(0, dname, loc));
+		sqlSession.insert("dept.insertOne",new DeptVo(0,dname,loc));
 	}
 
 	@Override
 	public DeptVo selectOne(int key) {
-		return sqlSession.selectOne("dept.selectOne", key);   // ¿Œ¿⁄
+		return sqlSession.selectOne("dept.selectOne",key);
 	}
 
 	@Override
 	public int updateOne(String dname, String loc, int deptno) {
 		return sqlSession.update("dept.updateOne", new DeptVo(0, dname, loc));
-	}
-
-	@Override
-	public void deleteOne(int key) {
-		sqlSession.delete("dept.deleteOne", key);
 	}
 
 }

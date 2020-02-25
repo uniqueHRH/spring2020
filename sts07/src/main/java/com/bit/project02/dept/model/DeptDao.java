@@ -14,5 +14,5 @@ public interface DeptDao {
 
 	int updateOne(String dname, String loc, int deptno);
 	
-	void deleteOne(int key);
+//	void deleteOne(int key);
 }

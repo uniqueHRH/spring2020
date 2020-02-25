@@ -2,22 +2,23 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-
 <sqlMap namespace="dept">
-	<typeAlias alias="bean" type="com.bit.project02.dept.model.entity.DeptVo"/>
-	<select id="selectAll" resultClass="bean">
-		select * from dept01 order by deptno desc
+	<typeAlias alias="bean" 
+	type="com.bit.project02.dept.model.entity.DeptVo"/>
+
+	<select id="selectAll"  resultClass="bean">
+		SELECT * FROM DEPT01 ORDER BY DEPTNO DESC
 	</select>
 	<select id="selectOne" resultClass="bean" parameterClass="int">
-		select * from dept01 where deptno=#value#
+		SELECT * FROM DEPT01 WHERE DEPTNO=#value#
 	</select>
 	<insert id="insertOne" parameterClass="bean">
-		insert into dept01 (dname, loc ) values (#dname#, #loc#)
+		INSERT INTO DEPT01 (DNAME,LOC) VALUES (#dname#,#loc#)
 	</insert>
 	<update id="updateOne" parameterClass="bean">
-		update dept01 set dname=#dname#, loc=#loc# where deptno=#deptno#
+		UPDATE DEPT01 SET DNAME=#dname#,LOC=#loc# WHERE DEPTNO=#deptno#
 	</update>
 	<delete id="deleteOne" parameterClass="int">
-		delete from dept01 where deptno=#deptno#
+		DELETE FROM DEPT01 WHERE DEPTNO=#deptno#
 	</delete>
 </sqlMap>

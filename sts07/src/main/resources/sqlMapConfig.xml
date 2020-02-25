@@ -1,7 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" 
 "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
-
+ 
 <sqlMapConfig>
-	<settings useStatementNamespaces="true"/>   <!-- namespace 를 쓰려면 여기서 true 라고 명세해야 한다 / ibatis 는 필수가 아니기 때문에 / 디폴트가 falses -->
+	<settings useStatementNamespaces="true"/>
 	<sqlMap resource="ibatis/dept.xml"/>
 </sqlMapConfig>
+
+<!-- namespace 를 쓰려면 여기서 true 라고 명세해야 한다 / ibatis 는 필수가 아니기 때문에 / 디폴트가 falses -->

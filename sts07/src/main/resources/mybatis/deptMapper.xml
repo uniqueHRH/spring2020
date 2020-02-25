@@ -4,21 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="dept">   <!-- mapper 이름 지어주기 -->
-	<select id="selectAll" resultType="bean">
-		select * from dept01 order by deptno desc
-	</select>
-	<select id="selectOne" resultType="bean" parameterType="int">
-		select * from dept01 where deptno=#{value}
-	</select>
-	<insert id="insertOne" parameterType="bean">
-		insert into dept01 (dname, loc) values (#{dname}, #{loc})
-	</insert>
-	<update id="updateOne" parameterType="int">
-		update dept01 set dname=#{dname}, loc=#{loc} where deptno=#{deptno}
-	</update>
-	<delete id="deleteOne" parameterType="int">
-		delete from dept01 where deptno=#{deptno}
-	</delete>
+  <select id="selectAll" resultType="bean">
+    select * from dept01
+  </select>
+  
+  <select id="selectOne" resultType="bean" parameterType="int">
+  	select * from dept01 where deptno=#{value}
+  </select>
+  
+  <insert id="insertOne" parameterType="bean">
+  	insert into dept01 (dname,loc) values (#{dname},#{loc})
+  </insert>
+  
+  <update id="updateOne" parameterType="int">
+  	update dept01 set dname=#{dname}#, loc=#{loc}# where deptno=#{deptno}#
+  </update>
+  
 </mapper>
 
 <!-- 

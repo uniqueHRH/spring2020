@@ -60,11 +60,11 @@ public class DeptDaoImpl1 implements DeptDao {
 		}
 
 
-		@Override
-		public void deleteOne(int key) {
-			// TODO Auto-generated method stub
-			
-		}
+//		@Override
+//		public void deleteOne(int key) {
+//			// TODO Auto-generated method stub
+//			
+//		}
 
 }
 

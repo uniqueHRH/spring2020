@@ -15,71 +15,64 @@ public class DeptController {
 	
 	@Autowired
 	DeptDao dao;
-
-	public void setDao(DeptDao dao) {
-		this.dao = dao;
-	}
-	
 	
 	@RequestMapping("list")
 	public String list(Model model) {
-		model.addAttribute("list",dao.selectAll());
+		model.addAttribute("list", dao.selectAll());
 		return "deptlist";
 	}
 	
-	
-	@RequestMapping(value={"add","insert"}, method=RequestMethod.GET)
+	@RequestMapping(value = {"add","insert"},method=RequestMethod.GET)
 	public String addForm(Model model) {
+
 		model.addAttribute("title","입력");
 		model.addAttribute("action","insert");
-		model.addAttribute("method","POST");
-		model.addAttribute("btn1","입 력");
+		model.addAttribute("method","post");
+		model.addAttribute("btn1","입력");
 		return "deptform";
 	}
 	
-	
-	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public String insert(String dname, String loc, Model model) {
+	@RequestMapping(value = "insert",method = RequestMethod.POST)
+	public String insert(String dname,String loc,Model model) {
 		if(dname.isEmpty()) {
-			model.addAttribute("bean",new DeptVo(0,dname,loc));
-			model.addAttribute("loc",loc);
-			model.addAttribute("btn1","입 력");
+			model.addAttribute("bean",new DeptVo(0, dname,loc));
+			model.addAttribute("title","입력");
+			model.addAttribute("action","insert");
+			model.addAttribute("method","post");
+			model.addAttribute("btn1","입력");
 			return "deptform";
 		}
-		dao.insertOne(dname, loc);
+		dao.insertOne(dname,loc);
 		return "redirect:list";
 	}
 	
-	
 	@RequestMapping("detail")
-	public String detail(int idx, Model model) {
+	public String detail(int idx,Model model) {
 		model.addAttribute("bean",dao.selectOne(idx));
 		model.addAttribute("title","상세");
 		model.addAttribute("action","edit");
-		model.addAttribute("method","GET");
+		model.addAttribute("method","get");
 		model.addAttribute("disabled","disabled");
 		model.addAttribute("btn1","수정으로 이동");
 		return "deptform";
 	}
 	
-	
-	@RequestMapping(value="edit", method=RequestMethod.GET)
-	public String edit(int deptno, Model model) {
+	@RequestMapping(value = "edit",method = RequestMethod.GET)
+	public String edit(int deptno,Model model) {
 		model.addAttribute("bean", dao.selectOne(deptno));
 		model.addAttribute("title", "수정");
-		model.addAttribute("method", "POST");
-		model.addAttribute("btn1","입 력");
+		model.addAttribute("method","post");
+		model.addAttribute("btn1","수정");
 		return "deptform";
 	}
 	
-	
-	@RequestMapping(value="edit", method=RequestMethod.POST)
-	public String edit(int deptno, String dname, String loc, Model model) {
+	@RequestMapping(value = "edit",method = RequestMethod.POST)
+	public String edit(int deptno, String dname, String loc,Model model) {
 		if(dname.isEmpty()) {
 			model.addAttribute("bean", new DeptVo(deptno, dname, loc));
 			model.addAttribute("title", "수정");
-			model.addAttribute("method", "POST");
-			model.addAttribute("btn1","입 력");
+			model.addAttribute("method","post");
+			model.addAttribute("btn1","수정");
 			return "deptform";
 		}
 		
@@ -87,36 +80,5 @@ public class DeptController {
 			return "redirect:detail?idx="+deptno;
 		model.addAttribute("bean", dao.selectOne(deptno));
 		return "redirect:edit?deptno="+deptno;
-		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
