@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+  
+<mapper namespace="com.bit.prj04.model.EmpDao">   <!-- namespace : 인터페이스로 정해줘야 한다 / dao 자동생성해주므로, 꼭 여기서 적어줘야해! 경로 꼼꼼히! -->
+
+	<select id="selectAll" resultType="com.bit.prj04.model.entity.EmpVo">   <!-- 여기에는 return 타입을 적어준다 -->
+		select * from emp01 order by sabun desc
+	</select>
+	
+	<select id="selectOne" resultType="com.bit.prj04.model.entity.EmpVo" parameterType="int">
+		select * from emp01 where sabun=#{sabun}
+	</select>
+	
+	<insert id="insertOne" parameterType="com.bit.prj04.model.entity.EmpVo">
+		isnert into emp01 (name, nalja, pay, deptno) values (#{name}, now(), #{pay}, 1)
+	</insert>
+	
+	<update id="updateOne" parameterType="com.bit.prj04.model.entity.EmpVo">
+		update emp01 set name=#{name}, pay=#{pay} where sabun=#{sabun}
+	</update>
+	
+	<delete id="deleteOne" parameterType="int">
+		delete from emp01 where sabun=#{value}
+	</delete>
+	
+</mapper>
+
+
+<!-- 
+	명세하지 않아도, update, delete 는 int 를 리턴한다
+	insert 는 리턴하지 않는다
+ -->
